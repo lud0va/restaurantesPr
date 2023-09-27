@@ -1,7 +1,6 @@
 package services;
 
 import dao.CustomerDAO;
-import dao.impl.CustomerDAOIMPL;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Customer;

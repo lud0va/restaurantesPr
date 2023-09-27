@@ -17,7 +17,6 @@ public class MainScreenController extends BaseScreenController {
     @Override
     public void principalCargado() {
         welcome.setText(Constants.WELCOME + getPrincipalController().getUser());
-        ;
 
     }
 }

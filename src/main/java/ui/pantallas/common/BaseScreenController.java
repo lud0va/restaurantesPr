@@ -1,9 +1,5 @@
 package ui.pantallas.common;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import services.CustomerService;
 import ui.pantallas.principalControllers.PrincipalController;
 
 
@@ -23,7 +19,5 @@ public abstract class BaseScreenController {
     public void principalCargado() {
 
     }
-
-    ;
 
 }

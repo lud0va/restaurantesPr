@@ -34,7 +34,7 @@ public class OrderDeleteController extends BaseScreenController {
     }
 
     public void clickButton(ActionEvent actionEvent) {
-        Order o = (Order) tableDel.getSelectionModel().getSelectedItem();
+        Order o = tableDel.getSelectionModel().getSelectedItem();
         sv.delete(o.getOrder_Id());
         textDel.setText(ConstantsScreens.Order_Del);
 

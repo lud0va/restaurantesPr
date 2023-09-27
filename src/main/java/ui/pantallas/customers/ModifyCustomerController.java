@@ -53,7 +53,7 @@ public class ModifyCustomerController extends BaseScreenController {
 
     public void clickTable(MouseEvent mouseEvent) {
 
-        Customer c = (Customer) tableModify.getSelectionModel().getSelectedItem();
+        Customer c = tableModify.getSelectionModel().getSelectedItem();
         idModify.setText(String.valueOf(c.getIdCustomer()));
         nameModify.setText(c.getName());
         lnameModify.setText(c.getLastname());
@@ -81,7 +81,7 @@ public class ModifyCustomerController extends BaseScreenController {
 
     public void addCustMod(ActionEvent actionEvent) {
         try {
-            Customer c = (Customer) tableModify.getSelectionModel().getSelectedItem();
+            Customer c = tableModify.getSelectionModel().getSelectedItem();
             sc.update(c);
             labelMod.setText(ConstantsScreens.Client_Upd);
 

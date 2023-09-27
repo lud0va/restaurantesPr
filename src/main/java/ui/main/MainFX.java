@@ -15,7 +15,7 @@ public class MainFX {
     @Inject
     FXMLLoader fxmlLoader;
 
-    public void start(@Observes @StartupScene Stage stage) throws IOException {
+    public void start(@Observes @StartupScene Stage stage) {
         try {
 
             Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream("/fxml/principal.fxml"));

@@ -48,7 +48,6 @@ public class DeleteCustomerController extends BaseScreenController {
     public void principalCargado() {
 
         idCustDel.setCellValueFactory(new PropertyValueFactory<>("idCustomer"));
-        ;
         nameCustDel.setCellValueFactory(new PropertyValueFactory<>("name"));
         lnameCustDel.setCellValueFactory(new PropertyValueFactory<>("lastname"));
 

@@ -4,7 +4,6 @@ import dao.OrderDAO;
 import io.vavr.control.Either;
 import model.Order;
 import model.errors.OrderError;
-import model.errors.OrderErrorEmptyList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +29,7 @@ public class OrderDAOIMPL implements OrderDAO {
         orders.add(new Order(224, LocalDateTime.of(1993, 2, 25,22,4,45), 3, 4));
         orders.add(new Order(225, LocalDateTime.of(1922, 12, 14,22,1,3), 4, 7));
         orders.add(new Order(226, LocalDateTime.of(1111, 1, 11,11,4,5), 5, 5));
-        if(orders.isEmpty()) result=Either.left(new OrderErrorEmptyList());
-        else result=Either.right(orders);
+        result=Either.right(orders);
         return result ;
     }
 
@@ -43,9 +40,7 @@ public class OrderDAOIMPL implements OrderDAO {
 
     @Override
     public Either<OrderError, Integer> add(Order order) {
-        if (!orders.add(order)) {
-            return Either.right(0);
-        }
+        orders.add(order);
         return Either.left(new OrderError(""));
     }
 

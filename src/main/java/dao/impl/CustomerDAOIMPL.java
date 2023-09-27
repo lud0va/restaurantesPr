@@ -7,11 +7,10 @@ import model.errors.CustomerError;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 public class CustomerDAOIMPL implements CustomerDAO {
-    private List<Customer> customers = new ArrayList<>();
+    private  List<Customer> customers = new ArrayList<>();
 
     @Override
     public Either<CustomerError, List<Customer>> getAll() {
@@ -31,9 +30,7 @@ public class CustomerDAOIMPL implements CustomerDAO {
 
     @Override
     public Either<CustomerError, Integer> add(Customer customer) {
-        if (!customers.add(customer)) {
-            return Either.right(0);
-        }
+        customers.add(customer);
         return Either.left(new CustomerError(1,""));
     }
 

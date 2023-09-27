@@ -9,7 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customer;
 import services.CustomerService;
 import ui.pantallas.common.BaseScreenController;
-import ui.pantallas.common.ConstantsScreens;
 
 import java.time.LocalDate;
 

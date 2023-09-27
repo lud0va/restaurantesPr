@@ -1,20 +1,15 @@
 package ui.pantallas.orders;
 
-import common.CustomerException;
 import jakarta.inject.Inject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
-import model.Customer;
 import model.Order;
-import services.CustomerService;
 import services.OrderService;
 import ui.pantallas.common.BaseScreenController;
 import ui.pantallas.common.ConstantsScreens;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
