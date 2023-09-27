@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.orders.OrderAddController">
+   <children>
+      <Label layoutX="105.0" layoutY="37.0" prefHeight="52.0" prefWidth="169.0" text="Add Orders" />
+      <TextField fx:id="dateAdd" layoutX="64.0" layoutY="123.0" promptText="Date/time" />
+      <Button layoutX="223.0" layoutY="310.0" onAction="#clickButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="89.0" text="Add Order" />
+      <TableView layoutX="366.0" layoutY="151.0" prefHeight="135.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <SplitMenuButton layoutX="285.0" layoutY="51.0" mnemonicParsing="false" text="SplitMenuButton">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </SplitMenuButton>
+      <TextField layoutX="430.0" layoutY="51.0" />
+      <Button layoutX="440.0" layoutY="111.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="522.0" layoutY="112.0" mnemonicParsing="false" text="Remove" />
+      <Label fx:id="textAddOrd" layoutX="50.0" layoutY="310.0" prefHeight="52.0" prefWidth="122.0" />
+      <TextField fx:id="tabTable" layoutX="58.0" layoutY="175.0" promptText="Table number" />
+      <TextField fx:id="customerTable" layoutX="58.0" layoutY="230.0" promptText="Customer id" />
+   </children>
+</AnchorPane>

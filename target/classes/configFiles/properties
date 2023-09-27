@@ -1,0 +1,2 @@
+pathFileCust=data/customers.csv
+pathFileOrd=data/orders.csv

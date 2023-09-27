@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.customers.ListCustomerController">
+   <children>
+      <Label layoutX="198.0" layoutY="35.0" prefHeight="60.0" prefWidth="205.0" text="List Customers">
+         <font>
+            <Font name="Comic Sans MS Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="listaCust" layoutX="25.0" layoutY="125.0" prefHeight="200.0" prefWidth="594.0">
+        <columns>
+          <TableColumn fx:id="idCustomerCol" prefWidth="100.0" text="ID" />
+          <TableColumn fx:id="nameCustomerCol" prefWidth="100.0" text="Name" />
+            <TableColumn fx:id="lastnameCustomerCol" prefWidth="100.0" text="Lastname" />
+            <TableColumn fx:id="emailCustomerCol" prefWidth="100.0" text="Email" />
+            <TableColumn fx:id="phoneCustomerCol" prefWidth="100.0" text="Phonenumber" />
+            <TableColumn fx:id="dateBirth" prefWidth="100.0" text="Date of birth" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

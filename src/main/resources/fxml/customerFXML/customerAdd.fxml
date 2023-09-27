@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.customers.AddCustomerController">
+   <children>
+      <TextField fx:id="nameAddCust" layoutX="206.0" layoutY="82.0" prefHeight="47.0" prefWidth="171.0" promptText="Name" />
+      <TextField fx:id="idAddCust" layoutX="14.0" layoutY="82.0" prefHeight="47.0" prefWidth="171.0" promptText="Id" />
+      <TextField fx:id="lastAddCust" layoutX="399.0" layoutY="82.0" prefHeight="47.0" prefWidth="171.0" promptText="Lastname" />
+      <TextField fx:id="phoneAddCust" layoutX="15.0" layoutY="146.0" prefHeight="47.0" prefWidth="171.0" promptText="Phone number" />
+      <TextField fx:id="emailAddCust" layoutX="206.0" layoutY="146.0" prefHeight="47.0" prefWidth="171.0" promptText="email" />
+      <TextField fx:id="birthAddCust" layoutX="399.0" layoutY="146.0" prefHeight="47.0" prefWidth="171.0" promptText="birthdate" />
+      <TableView layoutX="192.0"  layoutY="200.0" prefHeight="200.0" fx:id="table" prefWidth="485.0">
+        <columns>
+          <TableColumn fx:id="tableId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="tableName" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="tableLastname" prefWidth="75.0" text="Lastname" />
+            <TableColumn fx:id="tablePhone" prefWidth="85.0" text="Phone number" />
+            <TableColumn fx:id="tableBirth" prefWidth="85.0" text="Birthdate" />
+            <TableColumn fx:id="tableEmail" prefWidth="85.0"  text="email" />
+        </columns>
+      </TableView>
+      <Label fx:id="custAdded" layoutX="36.0" layoutY="226.0" prefHeight="61.0" prefWidth="130.0" />
+      <Label layoutX="169.0" layoutY="14.0" prefHeight="55.0" prefWidth="245.0" text="ADD CUSTOMER">
+         <font>
+            <Font name="Comic Sans MS" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="addButton" layoutX="57.0" layoutY="335.0" mnemonicParsing="false" onAction="#clickBtn" prefHeight="47.0" prefWidth="92.0" text="Add" />
+
+   </children>
+</AnchorPane>
