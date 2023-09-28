@@ -83,7 +83,7 @@ public class AddCustomerController extends BaseScreenController {
         tableLastname.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         tableEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tablePhone.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
-        tableBirth.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+        tableBirth.setCellValueFactory(new PropertyValueFactory<>("birthdayDate"));
 
 
         sc.getAll()

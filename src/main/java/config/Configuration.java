@@ -20,7 +20,7 @@ public class Configuration {
     private Configuration() {
         try {
             p = new Properties();
-            p.load(Configuration.class.getClassLoader().getResourceAsStream("configFiles/properties.txt"));
+            p.load(Configuration.class.getClassLoader().getResourceAsStream("configFiles/properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,6 +30,7 @@ public class Configuration {
 
         if (instance==null) {
             instance=new Configuration();
+
         }
         return instance;
     }

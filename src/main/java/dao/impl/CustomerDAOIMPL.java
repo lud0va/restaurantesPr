@@ -5,6 +5,10 @@ import io.vavr.control.Either;
 import model.Customer;
 import model.errors.CustomerError;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,5 +65,41 @@ public class CustomerDAOIMPL implements CustomerDAO {
         }
 
         return Either.left(new CustomerError(2,""));
+    }
+
+    @Override
+    public boolean saveFile(String customerString, Path file) {
+        try {
+
+            String line = "Line written with Files.write \n";
+            Files.write(file, line.getBytes(), StandardOpenOption.APPEND);
+            return true;
+        } catch (IOException io) {
+            System.err.println(io);
+        }
+       return false;
+    }
+
+    @Override
+    public boolean readFile(Path file) throws IOException {
+        List<String> fileList;
+
+        try {
+
+            //Reading the whole file using java.nio
+            fileList = Files.readAllLines(file);
+            System.out.println(fileList);
+
+            fileList.forEach((linea) -> {
+                System.out.println(linea);
+            });
+            return true;
+        }catch (IOException io) {
+
+            System.err.println(io);
+
+        }
+        return false;
+
     }
 }

@@ -6,6 +6,8 @@ import jakarta.inject.Inject;
 import model.Order;
 import model.errors.OrderError;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 public class OrderService {
@@ -32,4 +34,9 @@ public class OrderService {
     public Either<OrderError, Integer> delete(int id) {
         return od.delete(id);
     }
+
+    boolean saveFile(String orderString, Path file){return od.saveFile(orderString,file);}
+
+
+    List<Order>  readFile(Path file,List<Order> orders)throws IOException{return od.readFile(file,orders);}
 }

@@ -1,7 +1,9 @@
 package dao.impl;
 
+import config.Configuration;
 import dao.OrderDAO;
 import io.vavr.control.Either;
+import jakarta.inject.Inject;
 import model.Order;
 import model.errors.OrderError;
 
@@ -11,26 +13,32 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
-import static java.nio.file.StandardOpenOption.WRITE;
+import static java.nio.file.StandardOpenOption.*;
+
 
 public class OrderDAOIMPL implements OrderDAO {
     private final List<Order> orders = new ArrayList<>();
+    Path file= Paths.get(Configuration.getInstance().getProperty("pathFileOrd"));
+
+
 
     @Override
     public Either<OrderError, List<Order>> getAll() {
         Either<OrderError, List<Order>> result;
-        orders.add(new Order(222, LocalDateTime.of(1992, 9, 4,11,2,3), 1, 3));
-        orders.add(new Order(223, LocalDateTime.of(1991, 5, 12,1,3,4), 2, 2));
-        orders.add(new Order(224, LocalDateTime.of(1993, 2, 25,22,4,45), 3, 4));
-        orders.add(new Order(225, LocalDateTime.of(1922, 12, 14,22,1,3), 4, 7));
-        orders.add(new Order(226, LocalDateTime.of(1111, 1, 11,11,4,5), 5, 5));
-        result=Either.right(orders);
-        return result ;
+
+
+        try {
+            result = Either.right(readFile(file, orders));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
     }
 
     @Override
@@ -60,7 +68,7 @@ public class OrderDAOIMPL implements OrderDAO {
     }
 
     @Override
-    public  Either<OrderError, Integer> delete(int id) {
+    public Either<OrderError, Integer> delete(int id) {
         for (Order o : orders) {
             if (o.getOrder_Id() == id) {
                 orders.remove(o);
@@ -89,27 +97,30 @@ public class OrderDAOIMPL implements OrderDAO {
     }
 
     @Override
-    public boolean readFile(Path file)throws IOException {
-        BufferedReader reader=null;
+    public List<Order> readFile(Path file, List<Order> orders) throws IOException {
+        BufferedReader reader = null;
         //as
 
-        try{
+        try {
 
             reader = Files.newBufferedReader(file);
 
             String line = null;
+            String[] s;
             while ((line = reader.readLine()) != null) {
+                s = line.split(";");
+                orders.add(new Order(Integer.parseInt(s[1]), LocalDateTime.parse(s[2]), Integer.parseInt(s[3]), Integer.parseInt(s[4])));
                 System.out.println(line);
             }
-            return true;
+
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
-        }finally {
+        } finally {
             if (reader != null) {
                 reader.close();
             }
         }
-        return false;
+        return orders;
     }
 
 

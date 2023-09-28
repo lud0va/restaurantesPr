@@ -47,7 +47,7 @@ public class ListCustomerController extends BaseScreenController {
         emailCustomerCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         phoneCustomerCol.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
 
-        dateBirth.setCellValueFactory(new PropertyValueFactory<>("Birthday"));
+        dateBirth.setCellValueFactory(new PropertyValueFactory<>("birthdayDate"));
         sc.getAll()
                 .peek(customers -> listaCust.getItems().addAll(customers))
                 .peekLeft(integer -> {

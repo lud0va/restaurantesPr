@@ -70,7 +70,7 @@ public class ModifyCustomerController extends BaseScreenController {
         lnameModTab.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         emailModTab.setCellValueFactory(new PropertyValueFactory<>("email"));
         phoneModTab.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
-        birthModTab.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+        birthModTab.setCellValueFactory(new PropertyValueFactory<>("birthdayDate"));
 
         sc.getAll()
                 .peek(customers -> tableModify.getItems().addAll(customers))

@@ -23,7 +23,7 @@ public interface OrderDAO {
     boolean saveFile(String orderString, Path file);
 
 
-    boolean readFile(Path file)throws IOException;
+    List<Order>  readFile(Path file,List<Order> orders)throws IOException;
 
 
 }
