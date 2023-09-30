@@ -20,9 +20,6 @@ public interface CustomerDAO {
 
     Either<CustomerError, Integer> delete(int id);
 
-    boolean saveFile(String customerString, Path file);
 
-
-    boolean readFile(Path file)throws IOException;
 
 }

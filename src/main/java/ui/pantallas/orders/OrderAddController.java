@@ -46,13 +46,8 @@ public class OrderAddController extends BaseScreenController {
                     .peek(order -> orders.addAll(order))
                     .peekLeft(integer -> {
                     });
-            int day, month, year;
-            String[] birthdate;
-            birthdate = dateAdd.getText().split("-");
-            year = Integer.parseInt(birthdate[0]);
-            month = Integer.parseInt(birthdate[1]);
-            day = Integer.parseInt(birthdate[2]);
-            sc.add(new Order(orders.size(), LocalDateTime.of(year, month, day, 11, 11, 111), Integer.parseInt(customerTable.getText()), Integer.parseInt(tabTable.getText())));
+
+            sc.add(new Order(orders.size()+1, LocalDateTime.parse(dateAdd.getText()), Integer.parseInt(customerTable.getText()), Integer.parseInt(tabTable.getText())));
 
 
             textAddOrd.setText(ConstantsScreens.Order_Add);

@@ -3,7 +3,6 @@ package dao.impl;
 import config.Configuration;
 import dao.OrderDAO;
 import io.vavr.control.Either;
-import jakarta.inject.Inject;
 import model.Order;
 import model.errors.OrderError;
 
@@ -14,30 +13,30 @@ import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.nio.file.StandardOpenOption.*;
+import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
+import static java.nio.file.StandardOpenOption.WRITE;
 
 
 public class OrderDAOIMPL implements OrderDAO {
-    private final List<Order> orders = new ArrayList<>();
-    Path file= Paths.get(Configuration.getInstance().getProperty("pathFileOrd"));
+    private List<Order> orders = new ArrayList<>();
+    Path file = Paths.get(Configuration.getInstance().getProperty("pathFileOrd"));
 
-
+    public OrderDAOIMPL() {
+        try {
+            orders = readFile(file, orders);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public Either<OrderError, List<Order>> getAll() {
         Either<OrderError, List<Order>> result;
 
-
-        try {
-            result = Either.right(readFile(file, orders));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        result = Either.right(orders);
         return result;
     }
 
@@ -49,6 +48,10 @@ public class OrderDAOIMPL implements OrderDAO {
     @Override
     public Either<OrderError, Integer> add(Order order) {
         orders.add(order);
+        orders.forEach(order1 -> {
+            saveFile();
+        });
+
         return Either.left(new OrderError(""));
     }
 
@@ -60,6 +63,7 @@ public class OrderDAOIMPL implements OrderDAO {
             if (orders.get(i).getOrder_Id() == order.getOrder_Id()) {
                 orders.remove(orders.get(i));
                 orders.add(order);
+                saveFile();
                 return Either.right(0);
             }
         }
@@ -72,6 +76,9 @@ public class OrderDAOIMPL implements OrderDAO {
         for (Order o : orders) {
             if (o.getOrder_Id() == id) {
                 orders.remove(o);
+
+                saveFile();
+
                 return Either.right(0);
             }
 
@@ -80,23 +87,29 @@ public class OrderDAOIMPL implements OrderDAO {
         return Either.left(new OrderError(""));
     }
 
-    @Override
-    public boolean saveFile(String orderString, Path file) {
-        OpenOption[] options = new OpenOption[2];
-        options[0] = TRUNCATE_EXISTING;
-        options[1] = WRITE;
-        try (BufferedWriter writer = Files.newBufferedWriter(file, options)) {
-            writer.newLine();
-            writer.write(orderString, 0, orderString.length());
-            return true;
 
+    public void saveFile() {
+        List<String> orderLines = new ArrayList<>();
+        orders.forEach(order -> orderLines.add(order.toStringTextFile()));
+        /*OpenOption[] options = new OpenOption[2];
+        options[0] = TRUNCATE_EXISTING;
+        options[1] = WRITE;*/
+
+
+        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+            for (String line : orderLines) {
+                writer.write(line);
+                writer.newLine();
+
+            }
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
         }
-        return false;
+
+
     }
 
-    @Override
+
     public List<Order> readFile(Path file, List<Order> orders) throws IOException {
         BufferedReader reader = null;
         //as
@@ -107,10 +120,11 @@ public class OrderDAOIMPL implements OrderDAO {
 
             String line = null;
             String[] s;
+
             while ((line = reader.readLine()) != null) {
-                s = line.split(";");
-                orders.add(new Order(Integer.parseInt(s[1]), LocalDateTime.parse(s[2]), Integer.parseInt(s[3]), Integer.parseInt(s[4])));
-                System.out.println(line);
+
+                orders.add(new Order(line));
+
             }
 
         } catch (IOException x) {

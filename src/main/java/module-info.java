@@ -32,6 +32,7 @@ module javafx11.multipantalla {
     opens ui.pantallas.customers;
     opens ui.pantallas.principalControllers;
     opens ui.main;
+    opens configFiles;
 
     opens css;
     opens fxml;

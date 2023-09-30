@@ -6,6 +6,8 @@ import jakarta.inject.Inject;
 import model.Customer;
 import model.errors.CustomerError;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 public class CustomerService {

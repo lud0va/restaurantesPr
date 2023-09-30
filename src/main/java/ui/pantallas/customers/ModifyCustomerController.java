@@ -3,10 +3,7 @@ package ui.pantallas.customers;
 import jakarta.inject.Inject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.Customer;
@@ -29,7 +26,7 @@ public class ModifyCustomerController extends BaseScreenController {
     @FXML
     private TextField emailModify;
     @FXML
-    private TextField bithModify;
+    private DatePicker bithModify;
     @FXML
     private TableView<Customer> tableModify;
     @FXML
@@ -59,7 +56,7 @@ public class ModifyCustomerController extends BaseScreenController {
         lnameModify.setText(c.getLastname());
         phoneModify.setText(c.getPhonenumber());
         emailModify.setText(c.getEmail());
-        bithModify.setText(c.getBirthdayDate().toString());
+        bithModify.setValue(c.getBirthdayDate());
 
     }
 
@@ -81,7 +78,7 @@ public class ModifyCustomerController extends BaseScreenController {
 
     public void addCustMod(ActionEvent actionEvent) {
         try {
-            Customer c = tableModify.getSelectionModel().getSelectedItem();
+            Customer c = new Customer(Integer.parseInt(idModify.getText()),nameModify.getText(),lnameModify.getText(),emailModify.getText(),phoneModify.getText(),bithModify.getValue());
             sc.update(c);
             labelMod.setText(ConstantsScreens.Client_Upd);
 

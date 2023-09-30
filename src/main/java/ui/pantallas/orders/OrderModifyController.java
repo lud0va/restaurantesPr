@@ -14,6 +14,8 @@ import services.OrderService;
 import ui.pantallas.common.BaseScreenController;
 import ui.pantallas.common.ConstantsScreens;
 
+import java.time.LocalDateTime;
+
 public class OrderModifyController extends BaseScreenController {
     private final OrderService sv;
     @FXML
@@ -42,8 +44,8 @@ public class OrderModifyController extends BaseScreenController {
     }
 
     public void clickButton(ActionEvent actionEvent) {
-
-            Order o = tableOrd.getSelectionModel().getSelectedItem();
+            Order idord=tableOrd.getSelectionModel().getSelectedItem();
+            Order o = new Order(idord.getOrder_Id(), LocalDateTime.parse(dateMod.getText()),Integer.parseInt(custMod.getText()),Integer.parseInt(tableMod.getText()));
             sv.update(o);
             textMod.setText(ConstantsScreens.Order_Upd);
 

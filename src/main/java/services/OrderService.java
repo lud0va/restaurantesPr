@@ -1,21 +1,28 @@
 package services;
 
+import dao.CustomerDAO;
 import dao.OrderDAO;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import model.Customer;
 import model.Order;
+import model.errors.CustomerError;
 import model.errors.OrderError;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderService {
 
     @Inject
     private OrderDAO od;
+    @Inject
 
-    public  Either<OrderError, List<Order>> getAll() {
+    private CustomerDAO co;
+
+    public Either<OrderError, List<Order>> getAll() {
         return od.getAll();
     }
 
@@ -35,8 +42,20 @@ public class OrderService {
         return od.delete(id);
     }
 
-    boolean saveFile(String orderString, Path file){return od.saveFile(orderString,file);}
 
 
-    List<Order>  readFile(Path file,List<Order> orders)throws IOException{return od.readFile(file,orders);}
+    public Either<OrderError, List<Order>> filterByCust(String customer) {
+
+        final int[] id = new int[1];
+        co.getAll().peek(customers -> customers.forEach(customer1 -> {
+            if (customer1.getName().equals(customer)){
+                id[0] =customer1.getIdCustomer();
+            }
+
+        }));
+        return getAll().peek(orders -> orders.stream().filter(order -> order.getCustomerId() ==id[0]));
+
+    }
+
+
 }

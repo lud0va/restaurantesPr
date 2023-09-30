@@ -1,16 +1,31 @@
 package ui.pantallas.orders;
 
 import jakarta.inject.Inject;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Customer;
 import model.Order;
 import services.OrderService;
 import ui.pantallas.common.BaseScreenController;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 public class OrderListController extends BaseScreenController {
     private final OrderService sv;
+
+
+    @FXML
+    private TextField customerFilterText;
+    @FXML
+    private TextField dateFilterText;
+    @FXML
+    private MenuItem filterDate;
+
+    @FXML
+    private MenuItem filterCustomer;
     @FXML
     private TableView<Order> tableOrder;
 
@@ -44,4 +59,34 @@ public class OrderListController extends BaseScreenController {
 
     }
 
+    public void filterByCust(){
+        tableOrder.getItems().clear();
+        List<Order> order=sv.getAll().get();
+        order= order.stream().filter(ord ->ord.getCustomerId()==Integer.parseInt(customerFilterText.getText())).toList();
+        tableOrder.getItems().addAll(order);
+
+
+
+    }
+
+    public void filterByDate(){
+        tableOrder.getItems().clear();
+        List<Order> order=sv.getAll().get();
+        order= order.stream().filter(ord -> ord.getOrder_date().equals(LocalDateTime.parse(dateFilterText.getText()))).toList();
+        tableOrder.getItems().addAll(order);
+    }
+
+    public void menuFilterClick(ActionEvent actionEvent) {
+        switch (((MenuItem) actionEvent.getSource()).getId()) {
+            case "filterDate":
+                filterByDate();
+                break;
+            case "filterCustomer":
+                filterByCust();
+                break;
+
+
+        }
+
+    }
 }

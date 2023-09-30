@@ -10,12 +10,12 @@
          <font>
             <Font name="Comic Sans MS Bold" size="12.0" />
          </font></Label>
-      <TableView fx:id="tableOrder" layoutX="13.0" layoutY="80.0" prefHeight="200.0" prefWidth="302.0">
+      <TableView fx:id="tableOrder" layoutX="13.0" layoutY="80.0" prefHeight="200.0" prefWidth="338.0">
         <columns>
           <TableColumn fx:id="idTable" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="dateTable" prefWidth="75.0" text="Date of order" />
-            <TableColumn fx:id="customerIdTable" prefWidth="75.0" text="Id customer" />
-            <TableColumn fx:id="idtabTable" prefWidth="75.0" text="Id table" />
+          <TableColumn fx:id="dateTable" prefWidth="110.33332824707031" text="Date of order" />
+            <TableColumn fx:id="customerIdTable" prefWidth="73.66665649414062" text="Id customer" />
+            <TableColumn fx:id="idtabTable" prefWidth="77.0" text="Id table" />
         </columns>
       </TableView>
       <TableView layoutX="393.0" layoutY="80.0" prefHeight="116.0" prefWidth="200.0">
@@ -25,20 +25,15 @@
             <TableColumn prefWidth="75.0" text="Lastname" />
         </columns>
       </TableView>
-      <TextField layoutX="393.0" layoutY="46.0" promptText="Customer name" />
-      <TextField layoutX="393.0" layoutY="238.0" prefHeight="42.0" prefWidth="94.0" promptText="Total amount" />
+      <TextField layoutX="393.0" layoutY="46.0" promptText="Customer name" text="Customer name" />
+      <TextField layoutX="393.0" layoutY="238.0" prefHeight="42.0" prefWidth="94.0" promptText="Total amount" text="Total amount" />
       <SplitMenuButton layoutX="24.0" layoutY="295.0" mnemonicParsing="false" text="Filter">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem fx:id="filterCustomer" mnemonicParsing="false" onAction="#menuFilterClick" text="customer" />
+          <MenuItem fx:id="filterDate" mnemonicParsing="false" onAction="#menuFilterClick" text="date" />
         </items>
       </SplitMenuButton>
-      <TextField layoutX="125.0" layoutY="295.0" prefHeight="25.0" prefWidth="94.0" promptText="Customer id" />
-      <SplitMenuButton layoutX="125.0" layoutY="341.0" mnemonicParsing="false" text="date">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </SplitMenuButton>
+      <TextField fx:id="customerFilterText" layoutX="125.0" layoutY="295.0" prefHeight="25.0" prefWidth="94.0" promptText="Customer id" />
+      <TextField fx:id="dateFilterText" layoutX="125.0" layoutY="348.0" prefHeight="25.0" prefWidth="94.0" promptText="date" />
    </children>
 </AnchorPane>

@@ -20,10 +20,7 @@ public interface OrderDAO {
 
     Either<OrderError, Integer> delete(int id);
 
-    boolean saveFile(String orderString, Path file);
 
-
-    List<Order>  readFile(Path file,List<Order> orders)throws IOException;
 
 
 }
